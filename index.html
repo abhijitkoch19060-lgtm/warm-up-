@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Summit | Mountain Website</title>
+  <meta name="description" content="A mountain-themed website template with video background, map, login and profile." />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== BACKGROUND VIDEO ===== -->
+  <div class="video-bg">
+    <!-- Put your mountain video at assets/mountain.mp4 (see README) -->
+    <video autoplay muted loop playsinline poster="assets/mountain-poster.jpg">
+      <source src="assets/mountain.mp4" type="video/mp4" />
+    </video>
+    <div class="video-overlay"></div>
+  </div>
+
+  <!-- ===== NAVBAR ===== -->
+  <header class="navbar">
+    <a href="#home" class="logo">⛰ Summit</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+    <nav id="navLinks">
+      <a href="#home" data-link>Home</a>
+      <a href="#about" data-link>About Us</a>
+      <a href="#map" data-link>Map</a>
+      <a href="#profile" data-link>Profile</a>
+      <a href="#login" data-link id="loginLink" class="btn-small">Login</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ===== HOME ===== -->
+    <section id="home" class="page">
+      <div class="hero">
+        <h1>Reach Your Next Summit</h1>
+        <p>Explore peaks, plan trails and join a community of mountain lovers.</p>
+        <div class="hero-buttons">
+          <a href="#map" class="btn">Explore the Map</a>
+          <a href="#about" class="btn btn-outline">Learn More</a>
+        </div>
+      </div>
+
+      <!-- TEMPLATE CARDS: copy one <article class="card"> to add more -->
+      <div class="cards">
+        <article class="card">
+          <h3>🏔 Trails</h3>
+          <p>Find hiking routes for every level, from gentle walks to alpine climbs.</p>
+          <a href="#map">View trails →</a>
+        </article>
+        <article class="card">
+          <h3>🏕 Camping</h3>
+          <p>Discover campsites, gear tips and safety guides for your next trip.</p>
+          <a href="https://www.nps.gov" target="_blank" rel="noopener">Camping guide ↗</a>
+        </article>
+        <article class="card">
+          <h3>📸 Gallery</h3>
+          <p>Share photos and stories from your favourite mountain views.</p>
+          <a href="https://unsplash.com/s/photos/mountains" target="_blank" rel="noopener">Get inspired ↗</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section id="about" class="page">
+      <div class="panel">
+        <h2>About Us</h2>
+        <p>Summit is a community project built by people who love the outdoors. Our goal is to make mountain exploration simple, safe and inspiring for everyone.</p>
+        <p>Edit this section in <code>index.html</code> to tell your own story.</p>
+
+        <div class="cards small">
+          <article class="card"><h3>Our Mission</h3><p>Help people connect with nature responsibly.</p></article>
+          <article class="card"><h3>Our Team</h3><p>Hikers, designers and developers working together.</p></article>
+          <article class="card"><h3>Contact</h3><p><a href="mailto:hello@example.com">hello@example.com</a></p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== MAP ===== -->
+    <section id="map" class="page">
+      <div class="panel">
+        <h2>Map</h2>
+        <p>Click a marker for details, or use the button to find your own location.</p>
+        <button class="btn" id="locateBtn">📍 Find my location</button>
+        <div id="mapBox"></div>
+      </div>
+    </section>
+
+    <!-- ===== LOGIN ===== -->
+    <section id="login" class="page">
+      <div class="panel narrow">
+        <h2 id="authTitle">Login</h2>
+        <form id="authForm">
+          <label id="nameRow" hidden>Full name
+            <input type="text" id="nameInput" placeholder="Your name" />
+          </label>
+          <label>Email
+            <input type="email" id="emailInput" placeholder="you@example.com" required />
+          </label>
+          <label>Password
+            <input type="password" id="passInput" placeholder="Min 6 characters" minlength="6" required />
+          </label>
+          <button type="submit" class="btn" id="authSubmit">Login</button>
+          <p class="msg" id="authMsg"></p>
+        </form>
+        <p class="switch">
+          <span id="switchText">No account?</span>
+          <a href="#login" id="switchLink">Sign up</a>
+        </p>
+        <small class="note">Demo only: data is stored in your browser (localStorage). Connect a real backend for production.</small>
+      </div>
+    </section>
+
+    <!-- ===== PROFILE ===== -->
+    <section id="profile" class="page">
+      <div class="panel narrow">
+        <h2>Profile</h2>
+        <div id="profileLoggedOut">
+          <p>You are not logged in.</p>
+          <a href="#login" class="btn">Go to Login</a>
+        </div>
+        <div id="profileLoggedIn" hidden>
+          <div class="avatar" id="avatar">?</div>
+          <form id="profileForm">
+            <label>Name <input type="text" id="pName" required /></label>
+            <label>Email <input type="email" id="pEmail" disabled /></label>
+            <label>Bio <textarea id="pBio" rows="3" placeholder="Tell us about yourself"></textarea></label>
+            <button type="submit" class="btn">Save changes</button>
+            <p class="msg" id="profileMsg"></p>
+          </form>
+          <button class="btn btn-outline" id="logoutBtn">Logout</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div>
+        <h4>⛰ Summit</h4>
+        <p>Explore. Climb. Share.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <a href="#home">Home</a>
+        <a href="#about">About Us</a>
+        <a href="#map">Map</a>
+        <a href="#profile">Profile</a>
+      </div>
+      <div>
+        <h4>Follow</h4>
+        <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://twitter.com" target="_blank" rel="noopener">Twitter / X</a>
+        <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+    <p class="copy">© <span id="year"></span> Summit. All rights reserved.</p>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
